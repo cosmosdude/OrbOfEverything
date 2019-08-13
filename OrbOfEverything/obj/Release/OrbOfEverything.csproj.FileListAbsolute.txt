@@ -1,0 +1,10 @@
+F:\t Uni Backup\Orb of Everything\dev\code\Orb of Everything (Winform) - Copy\OrbOfEverything\OrbOfEverything\bin\Release\OrbOfEverything.exe
+F:\t Uni Backup\Orb of Everything\dev\code\Orb of Everything (Winform) - Copy\OrbOfEverything\OrbOfEverything\bin\Release\OrbOfEverything.pdb
+F:\t Uni Backup\Orb of Everything\dev\code\Orb of Everything (Winform) - Copy\OrbOfEverything\OrbOfEverything\obj\Release\OrbOfEverything.GameDefeatDialog.GameDefeatDialog.resources
+F:\t Uni Backup\Orb of Everything\dev\code\Orb of Everything (Winform) - Copy\OrbOfEverything\OrbOfEverything\obj\Release\OrbOfEverything.MainMenuViewController.resources
+F:\t Uni Backup\Orb of Everything\dev\code\Orb of Everything (Winform) - Copy\OrbOfEverything\OrbOfEverything\obj\Release\OrbOfEverything.Properties.Resources.resources
+F:\t Uni Backup\Orb of Everything\dev\code\Orb of Everything (Winform) - Copy\OrbOfEverything\OrbOfEverything\obj\Release\OrbOfEverything.Settings.SettingsViewController.resources
+F:\t Uni Backup\Orb of Everything\dev\code\Orb of Everything (Winform) - Copy\OrbOfEverything\OrbOfEverything\obj\Release\OrbOfEverything.Survival.SurvivalViewController.resources
+F:\t Uni Backup\Orb of Everything\dev\code\Orb of Everything (Winform) - Copy\OrbOfEverything\OrbOfEverything\obj\Release\OrbOfEverything.csproj.GenerateResource.Cache
+F:\t Uni Backup\Orb of Everything\dev\code\Orb of Everything (Winform) - Copy\OrbOfEverything\OrbOfEverything\obj\Release\OrbOfEverything.exe
+F:\t Uni Backup\Orb of Everything\dev\code\Orb of Everything (Winform) - Copy\OrbOfEverything\OrbOfEverything\obj\Release\OrbOfEverything.pdb

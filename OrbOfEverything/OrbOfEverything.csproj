@@ -1,0 +1,243 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{98EC7AF9-BFAD-4FA7-AB9B-4EAC5102C9F3}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>OrbOfEverything</RootNamespace>
+    <AssemblyName>OrbOfEverything</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CustomGraphics\GradientPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Decorator\BasicDecorator.cs" />
+    <Compile Include="Decorator\Constants.cs" />
+    <Compile Include="Engine\Animation\Interpolation\OOEInterpolation.cs" />
+    <Compile Include="Engine\Animation\Interpolation\OOEInterpolationEaseIn.cs" />
+    <Compile Include="Engine\Animation\Interpolation\OOEInterpolationEaseInOut.cs" />
+    <Compile Include="Engine\Animation\Interpolation\OOEInterpolationEaseOut.cs" />
+    <Compile Include="Engine\Animation\Interpolation\OOEInterpolationLinear.cs" />
+    <Compile Include="Engine\Animation\OOEAnimating.cs" />
+    <Compile Include="Engine\Animation\OOEValueAnimator.cs" />
+    <Compile Include="Engine\OOEEngine.cs" />
+    <Compile Include="Engine\OOEEngineObserving.cs" />
+    <Compile Include="GameDefeatDialog\GameDefeatDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GameDefeatDialog\GameDefeatDialog.Designer.cs">
+      <DependentUpon>GameDefeatDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Game\Graphics\Measurement\CGPoint.cs" />
+    <Compile Include="Game\Graphics\Measurement\CGRect.cs" />
+    <Compile Include="Game\Graphics\Measurement\CGSize.cs" />
+    <Compile Include="Game\Graphics\OOEGraphicsDrawing.cs" />
+    <Compile Include="Game\Graphics\OOEGraphicsItem.cs" />
+    <Compile Include="Game\Logic\Core\Orb.cs" />
+    <Compile Include="Game\Logic\Core\OrbStyle.cs" />
+    <Compile Include="Game\Logic\Enemy\EnemyOrb.cs" />
+    <Compile Include="Game\Logic\Player\PlayerContext.cs" />
+    <Compile Include="Game\Logic\Player\PlayerOrb.cs" />
+    <Compile Include="MainMenu\MainMenuViewController.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainMenu\MainMenuViewController.Designer.cs">
+      <DependentUpon>MainMenuViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Settings\SettingsViewController.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Settings\SettingsViewController.Designer.cs">
+      <DependentUpon>SettingsViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Survival\SurvivalViewController.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Survival\SurvivalViewController.Designer.cs">
+      <DependentUpon>SurvivalViewController.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="GameDefeatDialog\GameDefeatDialog.resx">
+      <DependentUpon>GameDefeatDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainMenu\MainMenuViewController.resx">
+      <DependentUpon>MainMenuViewController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="Settings\SettingsViewController.resx">
+      <DependentUpon>SettingsViewController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Survival\SurvivalViewController.resx">
+      <DependentUpon>SurvivalViewController.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\button-play-levels.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\button-quit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\button-settings.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\button-survival.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\img-enemy-blue%40HQ.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\img-enemy-blue%40LQ.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\img-enemy-blue%40MQ.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\img-enemy-purple%40HQ.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\img-enemy-purple%40LQ.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\img-enemy-purple%40MQ.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\img-enemy-yellow%40HQ.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\img-enemy-yellow%40LQ.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\img-enemy-yellow%40MQ.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\img-player-blue%40HQ.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\img-player-blue%40LQ.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\img-player-blue%40MQ.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\img-player-purple%40HQ.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\img-player-purple%40LQ.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\img-player-purple%40MQ.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\img-player-yellow%40HQ.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\img-player-yellow%40LQ.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\img-player-yellow%40MQ.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\img-powerup%40HQ.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\img-powerup%40LQ.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\img-powerup%40MQ.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\interface-blue-orb%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\interface-green-orb%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\interface-title.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\interface-yellow-orb%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\img-health-full%40HQ.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\img-health-full%40LQ.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\img-health-full%40MQ.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\img-health-half%40HQ.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\img-health-half%40LQ.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\img-health-half%40MQ.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
