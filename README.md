@@ -11,11 +11,12 @@ Since Winforms doesn't have any built-in **Animation System**, it is written fro
 
 <br> <br>
 
-**System Requirements**
-<hr>
-CPU : i3 or higher
-<hr>
-RAM: 256MB
-<hr>
-Storage: 100KB
-<hr>
+**Requirements**
+
+| System  ||
+|---------|----------------|
+| CPU     | *i3 or higher* |
+| RAM     | *256 MB*       |
+| Storage | *100KB*        |
+| GPU     | Intel HD       |
+
