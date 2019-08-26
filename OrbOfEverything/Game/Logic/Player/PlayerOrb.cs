@@ -34,7 +34,7 @@ namespace OrbOfEverything.Game.Logic.Player
         {
             if (texture == null) return;
 
-            ctx.DrawImageUnscaled(texture, (int)frame.origin.x, (int)frame.origin.y, (int)frame.size.width, (int)frame.size.height);
+            ctx.DrawImage(texture, (int)frame.origin.x, (int)frame.origin.y, (int)frame.size.width, (int)frame.size.height);
         }
 
 
@@ -127,11 +127,13 @@ namespace OrbOfEverything.Game.Logic.Player
                 // playerOrb.Update();
                 // this.Invalidate();
             };
+
             playerOrbAnimator.OnFinish = () => {
                 CanMove = true;
                 playerOrbAnimator.Dispose();
                 playerOrbAnimator = null;
             };
+
             playerOrbAnimator.Start();
         }
 
@@ -145,6 +147,44 @@ namespace OrbOfEverything.Game.Logic.Player
                 playerOrbAnimator.Dispose();
                 playerOrbAnimator = null;
             }
+        }
+
+        
+
+        public void IncreaseSize()
+        {
+            // MessageBox.Show("Increased");
+            // if (frame.size.width >= 100) return;
+
+            int incLen = 10;
+            int incLen_2 = incLen / 2;
+
+            playerStartX -= incLen_2;
+            frame.size.width += incLen;
+            playerTotalX -= incLen_2;
+
+            playerStartY -= incLen_2;
+            frame.size.height += incLen;
+            playerTotalY -= incLen_2;
+        }
+        public void DecreaseSize()
+        {
+            if (frame.size.width <= 50)
+            {
+                frame.size.width = 50;
+                frame.size.height = 50;
+                return;
+            }
+            int incLen = 10;
+            int incLen_2 = incLen / 2;
+
+            playerStartX += incLen_2;
+            frame.size.width -= incLen;
+            playerTotalX += incLen_2;
+
+            playerStartY += incLen_2;
+            frame.size.height -= incLen;
+            playerTotalY += incLen_2;
         }
     }
 }

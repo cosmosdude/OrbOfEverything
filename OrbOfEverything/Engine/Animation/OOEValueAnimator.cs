@@ -66,6 +66,7 @@ namespace OrbOfEverything.Engine.Animation
                 if(currentTime == totalTime)
                 {
                     Pause();
+                    
                     if (OnFinish != null) OnFinish();
                 }
             }

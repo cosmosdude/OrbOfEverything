@@ -9,7 +9,7 @@ namespace OrbOfEverything.Decorator
 {
     class Constants
     {
-        public static Image playerOrbInBlue = new Bitmap(Properties.Resources.img_player_blue_LQ, new Size(50, 50));
+        public static Image playerOrbInBlue = Properties.Resources.img_player_blue_HQ;
         /*
         {
             get
@@ -19,7 +19,7 @@ namespace OrbOfEverything.Decorator
         }  
          */
 
-        public static Image playerOrbInPurple  = new Bitmap(Properties.Resources.img_player_purple_LQ, new Size(50, 50));
+        public static Image playerOrbInPurple = Properties.Resources.img_player_purple_HQ;
         /*    
         {
             get
@@ -44,11 +44,16 @@ namespace OrbOfEverything.Decorator
                 return Properties.Resources.img_enemy_purple_LQ;
             }
         }
+
+
+        public static Image powerUpHealth = Properties.Resources.img_powerup_health_LQ;
     }
 
     class ColorConstants
     {
         public static Color blueColor = Color.FromArgb(0xff, 97, 178, 251);
         public static Color purpleColor = Color.FromArgb(0xff, 197, 104, 224);
+        public static Color greenColor = Color.FromArgb(0xff, 0x41, 0xd8, 0x88);
+        public static Color redColor = Color.FromArgb(0xff, 0xdf, 0x3f, 0x3f);
     }
 }

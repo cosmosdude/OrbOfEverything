@@ -8,3 +8,14 @@ F:\t Uni Backup\Orb of Everything\dev\code\Orb of Everything (Winform) - Copy\Or
 F:\t Uni Backup\Orb of Everything\dev\code\Orb of Everything (Winform) - Copy\OrbOfEverything\OrbOfEverything\obj\Release\OrbOfEverything.csproj.GenerateResource.Cache
 F:\t Uni Backup\Orb of Everything\dev\code\Orb of Everything (Winform) - Copy\OrbOfEverything\OrbOfEverything\obj\Release\OrbOfEverything.exe
 F:\t Uni Backup\Orb of Everything\dev\code\Orb of Everything (Winform) - Copy\OrbOfEverything\OrbOfEverything\obj\Release\OrbOfEverything.pdb
+C:\Users\lapyae\Desktop\OOE\OrbOfEverything\obj\Release\OrbOfEverything.exe
+C:\Users\lapyae\Desktop\OOE\OrbOfEverything\obj\Release\OrbOfEverything.pdb
+C:\Users\lapyae\Desktop\OOE\OrbOfEverything\bin\Release\OrbOfEverything.exe
+C:\Users\lapyae\Desktop\OOE\OrbOfEverything\bin\Release\OrbOfEverything.pdb
+C:\Users\lapyae\Desktop\OOE\OrbOfEverything\obj\Release\OrbOfEverything.GameDefeatDialog.GameDefeatDialog.resources
+C:\Users\lapyae\Desktop\OOE\OrbOfEverything\obj\Release\OrbOfEverything.MainMenuViewController.resources
+C:\Users\lapyae\Desktop\OOE\OrbOfEverything\obj\Release\OrbOfEverything.Properties.Resources.resources
+C:\Users\lapyae\Desktop\OOE\OrbOfEverything\obj\Release\OrbOfEverything.Settings.SettingsViewController.resources
+C:\Users\lapyae\Desktop\OOE\OrbOfEverything\obj\Release\OrbOfEverything.Survival.SurvivalViewController.resources
+C:\Users\lapyae\Desktop\OOE\OrbOfEverything\obj\Release\OrbOfEverything.csproj.GenerateResource.Cache
+C:\Users\lapyae\Desktop\OOE\OrbOfEverything\obj\Release\OrbOfEverything.csprojResolveAssemblyReference.cache

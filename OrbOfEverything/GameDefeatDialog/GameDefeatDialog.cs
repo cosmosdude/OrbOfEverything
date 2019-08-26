@@ -14,6 +14,9 @@ namespace OrbOfEverything.GameDefeatDialog
 
     public partial class GameDefeatDialog : Form
     {
+        // public Form parentForm;
+
+        private bool isActionDrivenByButtons = false;
         public GameDefeatDialogAction OnMainMenu = () => { };
         public GameDefeatDialogAction OnPlayAgain = () => { };
 
@@ -27,10 +30,13 @@ namespace OrbOfEverything.GameDefeatDialog
             this.highestSteak = highestSteak;
             this.score = score;
             this.wave = wave;
+
+            this.Icon = Icon.ExtractAssociatedIcon(Application.ExecutablePath);
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
+            isActionDrivenByButtons = true;
             if (OnMainMenu != null) OnMainMenu();
             // Main Menu
             this.Close();
@@ -38,6 +44,7 @@ namespace OrbOfEverything.GameDefeatDialog
 
         private void button2_Click(object sender, EventArgs e)
         {
+            isActionDrivenByButtons = true;
             if (OnPlayAgain != null) OnPlayAgain();
             // Play Again
             this.Close();
@@ -50,8 +57,14 @@ namespace OrbOfEverything.GameDefeatDialog
             labelForScore.Text = "" + score;
             labelForHighStreak.Text = "" + highestSteak;
             labelForWaveNumber.Text = "" + wave;
+        }
 
-
+        private void GameDefeatDialog_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            if (isActionDrivenByButtons == false)
+            {
+                Application.Exit();
+            }
         }
     }
 }

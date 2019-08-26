@@ -16,8 +16,12 @@ namespace OrbOfEverything.Game.Logic.Player
     // public delegate void PlayerContextPlayerHealEvent();
     public delegate void PlayerContextPlayerHealthChangeEvent(int changeInHealth);
 
-    public sealed class PlayerContext
+    public sealed class PlayerContext: IDisposable
     {
+        // MARK:- Last Eaten orb.
+        public OrbStyle LastEatenOrb = OrbStyle.none;
+
+
         // MARK:- Health Information
         public int healthPoint = 10;
         public int maxHealth = 10;
@@ -59,10 +63,18 @@ namespace OrbOfEverything.Game.Logic.Player
 
         public void Heal(int hp = 1)
         {
+            if (IsHealable == false) return;
+            MakeUnhealable();
+            // MessageBox.Show("This is called.");
+            int hpDiff = healthPoint;
             healthPoint += hp;
             if (healthPoint >= maxHealth)
             {
                 healthPoint = maxHealth;
+                hpDiff = healthPoint - hpDiff;
+
+                if (hpDiff != 0 && OnHealthChange != null) OnHealthChange(hp);
+
             } else
             {
                 if (OnHealthChange != null) OnHealthChange(hp);
@@ -94,10 +106,36 @@ namespace OrbOfEverything.Game.Logic.Player
             vulTimer = null;
         }
 
+
+
+        // MARK:- Vulnerability information
+        public bool IsHealable = true;
+        Timer healTimer = null;
+        public void MakeUnhealable()
+        {
+            if (IsHealable == false) return;
+            IsHealable = false;
+            healTimer = new Timer();
+            healTimer.Interval = 1000;
+            healTimer.Tick += MakeHealable;
+            healTimer.Start();
+        }
+
+        private void MakeHealable(Object sender, EventArgs e)
+        {
+            IsHealable = true;
+            if (healTimer == null) return;
+            healTimer.Stop();
+            healTimer.Dispose();
+            healTimer = null;
+        }
+
         public int HighestSteak = 0;
         public int Wave = 1;
         public int Steak = 0;
         public int Score = 0;
+        private int previousScore = 0;
+        public int ChangeInScore = 0;
 
         // MARK:- Score information
         public void ResetContext()
@@ -107,7 +145,10 @@ namespace OrbOfEverything.Game.Logic.Player
             Steak = 0;
             Score = 0;
             HighestSteak = 0;
+            previousScore = 0;
+            ChangeInScore = 0;
         }
+
         public void ResetSteak()
         {
             if (Steak > HighestSteak)
@@ -119,9 +160,22 @@ namespace OrbOfEverything.Game.Logic.Player
         }
         public void IncreaseScore()
         {
+            previousScore = Score;
             Score = Score + (10 * (Steak + 1));
             Steak += 1;
+
+            ChangeInScore = Score - previousScore;
         }
 
+
+        public void Dispose()
+        {
+            if(vulTimer != null)
+            {
+                vulTimer.Stop();
+                vulTimer.Dispose();
+                vulTimer = null;
+            }
+        }
     }
 }

@@ -44,6 +44,9 @@
             this.label3 = new System.Windows.Forms.Label();
             this.labelForWaveNumber = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.panelForCountDown = new System.Windows.Forms.Panel();
+            this.labelForCountDown = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this.playerHealth.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.heartBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.heartBox5)).BeginInit();
@@ -51,6 +54,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.heartBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.heartBox3)).BeginInit();
             this.panelForStats.SuspendLayout();
+            this.panelForCountDown.SuspendLayout();
             this.SuspendLayout();
             // 
             // playerHealth
@@ -231,12 +235,43 @@
             this.label1.TabIndex = 10;
             this.label1.Text = "Wave";
             // 
+            // panelForCountDown
+            // 
+            this.panelForCountDown.Controls.Add(this.label4);
+            this.panelForCountDown.Controls.Add(this.labelForCountDown);
+            this.panelForCountDown.Enabled = false;
+            this.panelForCountDown.Location = new System.Drawing.Point(378, 219);
+            this.panelForCountDown.Name = "panelForCountDown";
+            this.panelForCountDown.Size = new System.Drawing.Size(94, 49);
+            this.panelForCountDown.TabIndex = 10;
+            // 
+            // labelForCountDown
+            // 
+            this.labelForCountDown.Font = new System.Drawing.Font("Consolas", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelForCountDown.Location = new System.Drawing.Point(24, 16);
+            this.labelForCountDown.Name = "labelForCountDown";
+            this.labelForCountDown.Size = new System.Drawing.Size(50, 33);
+            this.labelForCountDown.TabIndex = 0;
+            this.labelForCountDown.Text = "3";
+            this.labelForCountDown.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Tai Le", 9.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(3, 0);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(85, 16);
+            this.label4.TabIndex = 1;
+            this.label4.Text = "Next Wave In";
+            // 
             // SurvivalViewController
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(752, 510);
+            this.Controls.Add(this.panelForCountDown);
             this.Controls.Add(this.panelForStats);
             this.Controls.Add(this.labelForHealthNumber);
             this.Controls.Add(this.labelForHealthTitle);
@@ -258,6 +293,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.heartBox3)).EndInit();
             this.panelForStats.ResumeLayout(false);
             this.panelForStats.PerformLayout();
+            this.panelForCountDown.ResumeLayout(false);
+            this.panelForCountDown.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -280,5 +317,8 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label labelForWaveNumber;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Panel panelForCountDown;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label labelForCountDown;
     }
 }

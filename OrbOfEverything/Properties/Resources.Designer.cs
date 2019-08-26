@@ -61,6 +61,56 @@ namespace OrbOfEverything.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon AppIcon_128p {
+            get {
+                object obj = ResourceManager.GetObject("AppIcon_128p", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon AppIcon_16p {
+            get {
+                object obj = ResourceManager.GetObject("AppIcon_16p", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon AppIcon_32p {
+            get {
+                object obj = ResourceManager.GetObject("AppIcon_32p", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon AppIcon_48p {
+            get {
+                object obj = ResourceManager.GetObject("AppIcon_48p", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon AppIcon_64p {
+            get {
+                object obj = ResourceManager.GetObject("AppIcon_64p", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap button_play_levels {
@@ -336,6 +386,36 @@ namespace OrbOfEverything.Properties {
         internal static System.Drawing.Bitmap img_player_yellow_MQ {
             get {
                 object obj = ResourceManager.GetObject("img_player_yellow_MQ", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap img_powerup_health_HQ {
+            get {
+                object obj = ResourceManager.GetObject("img_powerup_health_HQ", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap img_powerup_health_LQ {
+            get {
+                object obj = ResourceManager.GetObject("img_powerup_health_LQ", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap img_powerup_health_MQ {
+            get {
+                object obj = ResourceManager.GetObject("img_powerup_health_MQ", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

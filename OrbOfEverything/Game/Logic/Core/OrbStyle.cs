@@ -7,6 +7,6 @@ namespace OrbOfEverything.Game.Logic.Core
 {
     public enum OrbStyle
     {
-        blue, purple
+        blue, purple, none
     }
 }

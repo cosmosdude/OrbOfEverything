@@ -51,7 +51,7 @@ namespace OrbOfEverything.Engine
 
         // MARK:- Timer values
         private Timer fixedTimer;
-        private UInt32 fps = 30;
+        private UInt32 fps = 45;
         public UInt32 FPS
         {
             set

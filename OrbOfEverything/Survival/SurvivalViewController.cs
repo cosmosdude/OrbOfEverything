@@ -19,6 +19,7 @@ using OrbOfEverything.Decorator;
 using OrbOfEverything.Game.Logic.Enemy;
 
 using OrbOfEverything.GameDefeatDialog;
+using OrbOfEverything.Game.Logic.PowerUp;
 
 namespace OrbOfEverything.Survival
 {
@@ -34,8 +35,21 @@ namespace OrbOfEverything.Survival
         {
             playerHealth.Size = new Size( (int)(playerContext.HealthPercent * 150) , 30);
             labelForHealthNumber.Text = "" + playerContext.healthPoint;
+            
+            AddStatusText(new CGPoint(player.frame.origin.x, player.frame.origin.y - player.frame.size.height), count);
         }
 
+        private void AddStatusText(CGPoint point, int value)
+        {
+            PlayerStatusText st = PlayerStatusText.MakeOneAt(point, value);
+            st.StartAnimation();
+            graphicsItems.Add(st);
+            st.completion = () =>
+            {
+                graphicsItems.Remove(st);
+            };
+        }
+        
         GameDefeatDialog.GameDefeatDialog dialog = null;
 
         private void OnPlayerDeath()
@@ -47,7 +61,7 @@ namespace OrbOfEverything.Survival
             // MessageBox.Show("You are dead.");
             // OOEEngine.Shared.IsPaused = true;
             // ClearWave();
-
+            this.Hide();
             dialog = new GameDefeatDialog.GameDefeatDialog(playerContext.HighestSteak, playerContext.Score, playerContext.Wave);
             dialog.OnPlayAgain = () =>
             {
@@ -76,9 +90,7 @@ namespace OrbOfEverything.Survival
 
         private void OnPlayerWin()
         {
-            playerContext.Wave += 1;
-            MakeWaveOfEnemies();
-            labelForWaveNumber.Text = "" + playerContext.Wave;
+            StartNextWaveCountDown();
         }
 
         private void MovePlayerToCenter()
@@ -162,8 +174,9 @@ namespace OrbOfEverything.Survival
             DoubleBuffered = true;
             InitializeComponent();
 
+            this.SetStyle(ControlStyles.OptimizedDoubleBuffer | ControlStyles.UserPaint | ControlStyles.AllPaintingInWmPaint, true);
 
-            // this.graphicsItems.Add(player);
+            this.Icon = Icon.ExtractAssociatedIcon(Application.ExecutablePath);
 
             OOEEngine.Shared.FPS = 30;
 
@@ -178,6 +191,10 @@ namespace OrbOfEverything.Survival
 
             playerContext.OnHealthChange = OnPlayerHealthChange;
             playerContext.OnDeath = OnPlayerDeath;
+
+            powerupSpawnTimer = new Timer();
+            powerupSpawnTimer.Interval = 15 * 1000;
+            powerupSpawnTimer.Tick += PowerUpSpawnTick;
         }
 
         private void SurvivalViewController_Load(object sender, EventArgs e)
@@ -193,10 +210,15 @@ namespace OrbOfEverything.Survival
 
             MovePlayerToCenter();
 
+            powerupSpawnTimer.Start();
+
             // animator.Start();
             // playerOrb.BackgroundImage = playerContext.GetOrbImage();
             player.RelativeDiagonalTimeLine = (float)Math.Sqrt(Math.Pow(ClientSize.Width, 2) + Math.Pow(ClientSize.Height, 2));
             OOEEngine.Shared.Add(this, type: OOEEngineObserverType.graphics);
+
+            panelForCountDown.Location = new Point((ClientSize.Width / 2) - (panelForCountDown.Size.Width / 2), (ClientSize.Height / 2) - (panelForCountDown.Size.Height / 2));
+            panelForCountDown.Hide();
         }
 
         private void SurvivalViewController_KeyUp(object sender, KeyEventArgs e)
@@ -216,6 +238,23 @@ namespace OrbOfEverything.Survival
         private void SurvivalViewController_FormClosed(object sender, FormClosedEventArgs e)
         {
             OOEEngine.Shared.Remove(this, type: OOEEngineObserverType.graphics);
+            if (countDownTimer != null)
+            {
+                countDownTimer.Stop();
+                countDownTimer.Dispose();
+                countDownTimer = null;
+            }
+
+            if (powerupSpawnTimer != null)
+            {
+                powerupSpawnTimer.Stop();
+                powerupSpawnTimer.Dispose();
+                powerupSpawnTimer = null;
+            }
+
+            playerContext.Dispose();
+
+            this.Dispose();
         }
 
         
@@ -253,36 +292,74 @@ namespace OrbOfEverything.Survival
             }
             
             
-            
-
             gctx.Clear(Color.White);
 
             CGRect bounds = new CGRect(0, 0, ClientSize.Width, ClientSize.Height);
 
+            int orbCount = 0;
+
             List<OOEGraphicsItem> graphicsItems = new List<OOEGraphicsItem>(this.graphicsItems);
             foreach (OOEGraphicsItem item in graphicsItems)
             {
+                
+                if (item is PowerUp)
+                {
+                    PowerUp targetPowerUp = item as PowerUp;
+                    if (targetPowerUp == healthPowerup)
+                    {
+                        if (player.IsInCollisionRangeOf(targetPowerUp))
+                        {
+                            playerContext.Heal();
+
+                            this.graphicsItems.Remove(targetPowerUp);
+                            healthPowerup = null;
+                        }
+                    }
+                }
+
                 if (item is EnemyOrb)
                 {
                     EnemyOrb enemy = item as EnemyOrb;
-
+                    orbCount += 1;
+                    /*
                     float x = player.frame.origin.x - enemy.frame.origin.x;
                     float y = player.frame.origin.y - enemy.frame.origin.y;
                     float rPlayer = player.frame.size.width / 2;
                     float rEnemy = player.frame.size.width / 2;
-
-                    if (Math.Pow(x, 2) + Math.Pow(y, 2) <= Math.Pow(rPlayer+rEnemy,2))
+                    */
+                    
+                    if (player.IsInCollisionRangeOf(enemy) /*Math.Pow(x, 2) + Math.Pow(y, 2) <= Math.Pow(rPlayer+rEnemy,2)*/)
                     {
+                        
                         if (enemy.Style != player.Style)
                         {
                             // Decrease Health
                             playerContext.Injur();
                             playerContext.ResetSteak();
+
+                            player.DecreaseSize();
+                            playerContext.LastEatenOrb = Game.Logic.Core.OrbStyle.none;
                         } else
                         {
+                            orbCount -= 1;
                             enemy.Dispose();
                             this.graphicsItems.Remove(enemy);
                             playerContext.IncreaseScore();
+
+                            AddStatusText(new CGPoint(player.frame.origin.x, player.frame.origin.y - player.frame.size.height), playerContext.ChangeInScore);
+
+
+                            if (playerContext.LastEatenOrb == enemy.Style)
+                            {
+                                player.IncreaseSize();
+                            }
+                            else
+                            {
+                                player.DecreaseSize();
+                                playerContext.LastEatenOrb = enemy.Style;
+                            }
+
+                            
                         }
 
                         OnOrbCollision();
@@ -293,14 +370,17 @@ namespace OrbOfEverything.Survival
             }
             player.DrawIn(bounds, gctx);
 
-            if (graphicsItems.Count == 0)
+            
+            if (orbCount == 0)
             {
                 OnPlayerWin();
             }
+
         }
 
 
 
+        
 
 
 
@@ -316,6 +396,75 @@ namespace OrbOfEverything.Survival
         public void FixedUpdate()
         {
             this.Invalidate();
+        }
+
+
+
+
+
+
+        private int countDownCount = 2;
+        private Timer countDownTimer = null;
+        private void CountDownTick(object t, EventArgs e)
+        {
+            if (countDownCount == 0)
+            {
+                if (countDownTimer != null)
+                {
+                    countDownCount = 2;
+                    labelForCountDown.Text = "3";
+                    panelForCountDown.Hide();
+                    countDownTimer.Stop();
+                    countDownTimer.Dispose();
+                    countDownTimer = null;
+
+                    playerContext.Wave += 1;
+                    MakeWaveOfEnemies();
+                    labelForWaveNumber.Text = "" + playerContext.Wave;
+                }
+            } else
+            {
+                countDownCount -= 1;
+                labelForCountDown.Text = "" + (countDownCount + 1);
+            }
+        }
+
+        private void StartNextWaveCountDown()
+        {
+            if (countDownTimer != null) return;
+            panelForCountDown.Show();
+            countDownTimer = new Timer();
+            countDownTimer.Tick += CountDownTick;
+            countDownTimer.Interval = 1000;
+            countDownTimer.Start();
+        }
+
+
+
+
+
+
+
+        private Timer powerupSpawnTimer = null;
+        private PowerUp healthPowerup = null;
+        private Random powerUpRandomizer = new Random();
+        private void PowerUpSpawnTick(object sender, EventArgs e)
+        {
+            
+            if (healthPowerup == null)
+            {
+                double randValue = powerUpRandomizer.NextDouble();
+                if (randValue < (1 - 0.5)) return;
+
+                healthPowerup = new HealthPowerUp();
+                healthPowerup.frame.size = new CGSize(50, 50);
+                graphicsItems.Add(healthPowerup);
+
+                // MessageBox.Show("Frame is +", healthPowerup.frame.origin.x + ", " + healthPowerup.frame.origin.y );
+            }
+
+            healthPowerup.frame.origin.x = powerUpRandomizer.Next(0, ClientSize.Width - 50);
+            healthPowerup.frame.origin.y = powerUpRandomizer.Next(0, ClientSize.Height - 50);
         }
     }
 }
