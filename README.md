@@ -7,7 +7,7 @@ This project is written in **C# Winforms**.
 
 > This is written for the sake of 3rd year *University Student Project*.
 
-Since Winforms doesn't have any built-in **Animation System**, it is written from scratch along with a **2D Game Engine**.
+Since Winforms doesn't have any built-in **Animation System**, it is written from scratch along with a small **2D Game Engine**.
 
 **Requirements**
 
