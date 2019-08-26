@@ -9,8 +9,6 @@ This project is written in **C# Winforms**.
 
 Since Winforms doesn't have any built-in **Animation System**, it is written from scratch along with a **2D Game Engine**.
 
-<br> <br>
-
 **Requirements**
 
 | System  ||
